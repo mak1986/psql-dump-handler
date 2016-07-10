@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/mak1986/psql-dump-handler.svg?branch=master)](https://travis-ci.org/mak1986/psql-dump-handler)
 
 
-## When the database dump your data it might be unsorted ##
+## When the database dump your data, it might be unsorted ##
 
 ```sql
 --
@@ -42,7 +42,7 @@ SELECT pg_catalog.setval('group_id_seq', 2, true);
 
 ## This example show how to sort your dump file ##
 
-__STEP 1:__ create a file name index.js that uses psql-dump-hander.
+__STEP 1:__ Create a file name index.js that uses psql-dump-hander.
 
 ```Javascript
 (function(){
@@ -61,13 +61,13 @@ __STEP 1:__ create a file name index.js that uses psql-dump-hander.
 }());
 ```
 
-In command line interface type: 
+__STEP 2:__ In command line interface type: 
 
 ```
 node index.js
 ```
 
-A dump.sql file will be created at your current path.
+__STEP 3:__ A dump.sql file will be created at your current path.
 
 
 ## dump.sql will look like this ##
