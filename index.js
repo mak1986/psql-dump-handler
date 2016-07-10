@@ -1,87 +1,62 @@
-/*jshint -W083 */
+#!/usr/bin/node
 (function(){
 	'use strict';
 	
-	var fs = require('fs');
-	var exec = require('child_process').exec;
+	var PsqlDumpHandler = require('./lib/PsqlDumpHandler');
 
+	var commands = ['dump'];
+	var options = {'-s': 'sortById'};
 
-	function PsqlDumpHandler(dbName){
-		this.dbName = dbName;
-	}
+	var cliArgs = process.argv;
+	
+	var args = cliArgs.slice(2);
 
-	PsqlDumpHandler.prototype.sortDumpColumnInsertsDataOnly = function(input){
-		
-		var data = input.split('\n');
-		var tempStatements = [];
-		var result = [];
-		
-		for(var i=0; i<data.length; i++){
-			
-			if(data[i].substr(0,6)==='INSERT' && data[i+1].substr(0,6)==='INSERT'){
-
-				tempStatements.push(data[i]);
-
-				continue;
-
-			}else if(data[i].substr(0,6)==='INSERT'){
-
-				tempStatements.push(data[i]);
-
-				tempStatements.sort(function(a, b){
-
-					var aInt = parseInt(a.split('VALUES')[1].substr(2).split(',')[0]);
-					var bInt = parseInt(b.split('VALUES')[1].substr(2).split(',')[0]);
-
-					return aInt-bInt;
-
-				});
-
-				result.push.apply(result, tempStatements);
-
-				tempStatements = [];
-
-
-			}else{
-
-				result.push(data[i]);
-
+	function getCommand(){
+		for(var c = 0; c < commands.length; c++){
+			if(commands[c]==args[0]){
+				return commands[c];
 			}
 		}
-		
-		return result.join('\n');
-
-	};
+		process.stderr.write('Error: Command doesn\'t exists\n');
+		process.exit(1);
+	}
 	
-	//pg_dump --column-inserts --data-only dbName
-	PsqlDumpHandler.prototype.dumpColumnInsertsDataOnly = function(options) {
+	function getOptions(){
+		var result = {};
+		var optionName;
+		var optionKeys = Object.keys(options);
 
-		exec(`pg_dump --column-inserts --data-only ${this.dbName}`, (error, stdout, stderr)=> {
-			
-			if(error){
-				console.error(`exec error: ${error}`);
-			}
-			
-			
-			if(stderr.length>0){
-			
-				console.log(`stderr: ${stderr}`);
-			
-			}else{
-
-				if(options.sortById){
-					stdout = this.sortDumpColumnInsertsDataOnly(stdout);			
+		for(var aIndex = 1; aIndex < args.length; aIndex++){
+			for(var oIndex in optionKeys){
+				if(args[aIndex] === optionKeys[oIndex]){
+					optionName = options[optionKeys[oIndex]];
+					result[optionName] = true;
 				}
-
-				fs.writeFile('dump.sql', stdout, 'utf8', (err)=>{
-					if(err) throw err;
-					console.log('dump.sql is saved.');
-				});
-
 			}
-		});
+		}
+		return result;
+	}
+
+	function getDatabase(){
+		for(var aIndex = 1; aIndex < args.length; aIndex++){
+			if(args[aIndex].substr(0,1) != '-'){
+				return args[aIndex];
+			}
+		}
+		process.stderr.write('Error: You must specify the database name\n');
+		process.exit(1);
+	}
+
+	var preparation = {
+		'command': getCommand(),
+		'options': getOptions(),
+		'database': getDatabase()
 	};
 
-	module.exports = PsqlDumpHandler;
+	var psqlDumpHandler = new PsqlDumpHandler(preparation.database);
+
+	if(preparation.command === 'dump'){
+		psqlDumpHandler.dumpColumnInsertsDataOnly(preparation.options);
+	}
 
 }());

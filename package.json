@@ -1,6 +1,10 @@
 {
   "name": "psql-dump-handler",
   "version": "0.0.2",
+  "preferGlobal": true,
+  "bin": {
+  	"psqlDumpHandler": "index.js"
+  },
   "description": "PostgreSQL dump handler",
   "main": "index.js",
   "scripts": {

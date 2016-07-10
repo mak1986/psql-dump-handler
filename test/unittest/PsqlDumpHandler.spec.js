@@ -4,7 +4,7 @@
 	var fs = require('fs');
 	var chai = require('chai');
 	var expect = chai.expect;
-	var PsqlDumpHandler = require('../../index.js');
+	var PsqlDumpHandler = require('../../lib/PsqlDumpHandler.js');
 
 	describe('PsqlDumpHandler', function(){
 
