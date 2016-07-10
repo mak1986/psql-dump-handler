@@ -17,15 +17,18 @@ npm install psql-dump-handler -g
 
 ## Synopsis ##
 
-	psqlDumpHandler [COMMAND] [OPTIONS]... [DATABASE NAME]
+	psqlDumpHandler [COMMAND] [DATABASE NAME] [OPTIONS]... 
 
 ## Description ##
 
-	Commands: 
+	[COMMAND]: 
 		dump (make a dump with only insert statements)
 
-	Options: 
-		-s (sort the statements by id)
+	[DATABASE NAME]
+		databaseName, -d databaseName, --database=databaseName 
+
+	[OPTIONS]: 
+		-s, --sort (sort the statements by id ascending)
 
 
 After running the command in the terminal a dump.sql file will be created at your current path..
@@ -115,3 +118,7 @@ SELECT pg_catalog.setval('group_id_seq', 2, true);
 
 
 ```
+
+## License ##
+
+MIT

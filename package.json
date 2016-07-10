@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "preferGlobal": true,
   "bin": {
-  	"psqlDumpHandler": "index.js"
+    "psqlDumpHandler": "index.js"
   },
   "description": "PostgreSQL dump handler",
   "main": "index.js",
@@ -18,5 +18,8 @@
   "license": "MIT",
   "devDependencies": {
     "chai": "^3.5.0"
+  },
+  "dependencies": {
+    "minimist": "^1.2.0"
   }
 }
