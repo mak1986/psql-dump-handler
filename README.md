@@ -2,8 +2,42 @@
 
 [![Build Status](https://travis-ci.org/mak1986/psql-dump-handler.svg?branch=master)](https://travis-ci.org/mak1986/psql-dump-handler)
 
+## Installation ##
 
-## When the database dump your data, it might be unsorted ##
+```
+npm install psql-dump-handler -g
+```
+
+## Name ##
+
+	psqlDumpHandler - PostgreSQL dump handler
+
+
+## Synopsis ##
+
+	psqlDumpHandler [COMMAND] [OPTIONS]... [DATABASE NAME]
+
+## Description ##
+
+	Commands: 
+		dump (make a dump with only insert statements)
+
+	Options: 
+		-s (sort the statements by id)
+
+
+After running the command in the terminal a dump.sql file will be created at your current path..
+
+
+__NOTE:__ 
+	1. This module expect you to have "node" command in /usr/bin/node.
+	2. This module currently only supports sorting dump file from PostgreSQL. 
+
+
+
+## Why? ##
+
+When the database dump your data, it might be unsorted just like the example code below.
 
 ```sql
 --
@@ -40,37 +74,8 @@ SELECT pg_catalog.setval('group_id_seq', 2, true);
 
 ```
 
-## This example show how to sort your dump file ##
+When you use -s option the result will be as the example below.
 
-__STEP 1:__ Create a file name index.js that uses psql-dump-hander.
-
-```Javascript
-(function(){
-	'use strict';
-
-	var PsqlDumpHandler = require('psql-dump-handler');
-
-	var psqlDumpHandler = new PsqlDumpHandler('your_db_name');
-
-	var options = {
-		sortById: true
-	};
-
-	psqlDumpHandler.dumpColumnInsertsDataOnly(options);
-
-}());
-```
-
-__STEP 2:__ In command line interface type: 
-
-```
-node index.js
-```
-
-__STEP 3:__ A dump.sql file will be created at your current path.
-
-
-## dump.sql will look like this ##
 
 ```sql
 --
