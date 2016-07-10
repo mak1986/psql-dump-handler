@@ -39,7 +39,7 @@ __NOTE:__
 
 ## Why? ##
 
-When the database dump your data, it might be unsorted just like the example code below.
+When the database dump your data, it might be unsorted just like the example below.
 
 ```sql
 --
@@ -76,7 +76,7 @@ SELECT pg_catalog.setval('group_id_seq', 2, true);
 
 ```
 
-When you use -s option the result will be as the example below.
+When you use -s option you will get:
 
 
 ```sql
