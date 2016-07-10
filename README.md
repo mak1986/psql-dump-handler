@@ -1,6 +1,7 @@
 # psql-dump-handler
 
 [![Build Status](https://travis-ci.org/mak1986/psql-dump-handler.svg?branch=master)](https://travis-ci.org/mak1986/psql-dump-handler)
+[![NPM version](http://img.shields.io/npm/v/psql-dump-handler.svg)](https://www.npmjs.org/package/psql-dump-handler)
 
 ## Installation ##
 
