@@ -43,4 +43,4 @@ INSERT INTO "user" (id, first_name, last_name, username) VALUES (3, 'bigJohn', '
 -- Name: user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: makjacobsen
 --
 
-SELECT pg_catalog.setval('user_id_seq', 2, true);
+SELECT pg_catalog.setval('user_id_seq', 3, true);
