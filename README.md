@@ -4,7 +4,7 @@
 
 ## Installation ##
 
-```
+```bash
 npm install psql-dump-handler -g
 ```
 
@@ -30,8 +30,10 @@ After running the command in the terminal a dump.sql file will be created at you
 
 
 __NOTE:__ 
+```
 	1. This module expect you to have "node" command in /usr/bin/node.
 	2. This module currently only supports sorting dump file from PostgreSQL. 
+```
 
 
 
