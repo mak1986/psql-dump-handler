@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/mak1986/psql-dump-handler.svg?branch=master)](https://travis-ci.org/mak1986/psql-dump-handler)
 [![NPM version](http://img.shields.io/npm/v/psql-dump-handler.svg)](https://www.npmjs.org/package/psql-dump-handler)
+[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 ## Installation ##
 
