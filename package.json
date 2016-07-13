@@ -15,6 +15,12 @@
     "type": "git",
     "url": "https://github.com/mak1986/psql-dump-handler.git"
   },
+  "keywords": [
+    "psql",
+    "PostgreSQL",
+    "dump",
+    "handler"
+  ],
   "license": "MIT",
   "devDependencies": {
     "chai": "^3.5.0"
